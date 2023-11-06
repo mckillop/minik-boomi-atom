@@ -14,7 +14,7 @@ spec:
       labels:
         app: atom
     spec:
-      terminationGracePeriodSeconds: 900
+      terminationGracePeriodSeconds: 30
       securityContext:
         fsGroup: 1000
       containers:
