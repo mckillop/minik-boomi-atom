@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: atom
+  labels:
+    app: atom
+spec:
+  selector:
+    matchLabels:
+      app: atom
+  serviceName: "atom-service"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: atom
+    spec:
+      terminationGracePeriodSeconds: 900
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - image: boomi/atom:release
+        imagePullPolicy: Always
+        name: atom-node
+        ports:
+        - containerPort: 9090
+          protocol: TCP
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "1024Mi"
+          requests:
+            cpu: "500m"
+            memory: "768Mi"
+        readinessProbe:
+          periodSeconds: 10
+          initialDelaySeconds: 10
+          httpGet:
+            path: /_admin/readiness
+            port: 9090
+        livenessProbe:
+          periodSeconds: 60
+          httpGet:
+            path: /_admin/liveness
+            port: 9090
+        env:
+        - name: BOOMI_ATOMNAME
+          value: "minik-boomi-atom"
+        - name: ATOM_LOCALHOSTID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: BOOMI_ACCOUNTID
+          value: "boomi_jameshutton-N7LJSM"
+        - name: BOOMI_USERNAME
+          value: "jameshutton@cloud.boomi.com"
+        - name: BOOMI_PASSWORD
+          value: "w@rr3N197201"
