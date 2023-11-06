@@ -49,9 +49,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: BOOMI_ACCOUNTID
-          value: "boomi_jameshutton-N7LJSM"
-        - name: BOOMI_USERNAME
-          value: "jameshutton@cloud.boomi.com"
-        - name: BOOMI_PASSWORD
-          value: "w@rr3N197201"
+        - name: INSTALL_TOKEN
+          value: "atom-5b2d3b95-7a8f-4684-928c-692c940b4dc4"
+        - name : BOOMI_ENVIRONMENTID
+          value: "40590140-dc5b-4c49-89f9-47f99641a0d4"
