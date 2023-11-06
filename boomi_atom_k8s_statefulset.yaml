@@ -8,7 +8,6 @@ spec:
   selector:
     matchLabels:
       app: atom
-  serviceName: "atom-service"
   replicas: 1
   template:
     metadata:
