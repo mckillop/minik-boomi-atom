@@ -18,7 +18,7 @@ spec:
       volumes:
         - name: molecule-storage
           persistentVolumeClaim:
-            claimName: nfs-claim      
+            claimName: pv-volume      
       securityContext:
         fsGroup: 1000
       containers:
